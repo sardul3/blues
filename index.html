@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ 
+  <title>Louisiana Blues Trial</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <link href="http://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
+  <link href="http://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  
+  <style>
+
+  
+
+  body {
+      font: 400 15px Lato, sans-serif;
+      line-height: 1.8;
+      color: #818181;
+      background-color:#64B5F6;;
+  }
+  h2 {
+      font-size: 24px;
+      text-transform: uppercase;
+      color: #303030;
+      font-weight: 600;
+      margin-bottom: 30px;
+  }
+  h4 {
+      font-size: 19px;
+      line-height: 1.375em;
+      color: #303030;
+      font-weight: 400;
+      margin-bottom: 30px;
+  }
+ html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      #map {
+        height: 100%;
+      }
+
+  .carousel-inner img {
+      width: 100%; /* Set width to 100% */
+      margin: auto;
+      min-height:200px;
+  }
+
+  /* Hide the carousel text when the screen is less than 600 pixels wide */
+  @media (max-width: 600px) {
+    .carousel-caption {
+      display: none; 
+    }
+    .sagar{
+      display:none;
+    }
+   
+  }  
+  .jumbotron {
+      background-color: #64B5F6;
+      color: #fff;
+ 
+      font-family: Montserrat, sans-serif;
+  }
+  .container-fluid {
+      padding: 60px 50px;
+  }
+  .bg-grey {
+      background-color: #f6f6f6;
+  }
+  .logo-small {
+      color: #f4511e;
+      font-size: 50px;
+  }
+  .logo {
+      color: #f4511e;
+      font-size: 200px;
+  }
+  .thumbnail {
+      padding: 0 0 15px 0;
+      border: none;
+      border-radius: 0;
+  }
+  .thumbnail img {
+      width: 100%;
+      height: 100%;
+      margin-bottom: 10px;
+  }
+  .carousel-control.right, .carousel-control.left {
+      background-image: none;
+      color: #f4511e;
+  }
+  .carousel-indicators li {
+      border-color: #f4511e;
+  }
+  .carousel-indicators li.active {
+      background-color: #f4511e;
+  }
+  .item h4 {
+      font-size: 19px;
+      line-height: 1.375em;
+      font-weight: 400;
+      font-style: italic;
+      margin: 70px 0;
+  }
+  .item span {
+      font-style: normal;
+  }
+  .panel {
+      border: 1px solid #f4511e; 
+      border-radius:0 !important;
+      transition: box-shadow 0.5s;
+  }
+  .panel:hover {
+      box-shadow: 5px 0px 40px rgba(0,0,0, .2);
+  }
+  .panel-footer .btn:hover {
+      border: 1px solid #f4511e;
+      background-color: #fff !important;
+      color: #f4511e;
+  }
+  .panel-heading {
+      color: #fff !important;
+      background-color: #f4511e !important;
+      padding: 25px;
+      border-bottom: 1px solid transparent;
+      border-top-left-radius: 0px;
+      border-top-right-radius: 0px;
+      border-bottom-left-radius: 0px;
+      border-bottom-right-radius: 0px;
+  }
+  .panel-footer {
+      background-color: white !important;
+  }
+  .panel-footer h3 {
+      font-size: 32px;
+  }
+  .panel-footer h4 {
+      color: #aaa;
+      font-size: 14px;
+  }
+  .panel-footer .btn {
+      margin: 15px 0;
+      background-color: #f4511e;
+      color: #fff;
+  }
+  .navbar {
+      margin-bottom: 0;
+      background-color: #64B5F6 ;
+      z-index: 9999;
+      border: 0;
+      font-size: 12px !important;
+      line-height: 1.42857143 !important;
+      letter-spacing: 4px;
+      border-radius: 0;
+      font-family: Montserrat, sans-serif;
+  }
+  .navbar li a, .navbar .navbar-brand {
+      color: #fff !important;
+  }
+  .navbar-nav li a:hover, .navbar-nav li.active a {
+      color: #f4511e !important;
+      background-color: #fff !important;
+  }
+  .navbar-default .navbar-toggle {
+      border-color: transparent;
+      color: #fff !important;
+  }
+  footer .glyphicon {
+      font-size: 20px;
+      margin-bottom: 20px;
+      color: #f4511e;
+  }
+  .slideanim {visibility:hidden;}
+  .slide {
+      animation-name: slide;
+      -webkit-animation-name: slide;	
+      animation-duration: 1s;	
+      -webkit-animation-duration: 1s;
+      visibility: visible;			
+  }
+  @keyframes slide {
+    0% {
+      opacity: 0;
+      -webkit-transform: translateY(70%);
+    } 
+    100% {
+      opacity: 1;
+      -webkit-transform: translateY(0%);
+    }	
+  }
+  @-webkit-keyframes slide {
+    0% {
+      opacity: 0;
+      -webkit-transform: translateY(70%);
+    } 
+    100% {
+      opacity: 1;
+      -webkit-transform: translateY(0%);
+    }
+  }
+  @media screen and (max-width:800px) and (min-width:540px)
+  {
+    /* this is the breakpoint where we transition from the first layout, of 
+          four side-by-side columns, to the square layout with 2X2 grid */
+  
+    #red, #blue, #green, #yellow {
+      width:50%;
+      display: inline-block;
+    }
+  }
+  @media screen and (max-width:800px) and (min-width:400px)
+  {
+    /* intermediate text density on tablet devices */
+    p
+    {
+      font-size:0.8em;
+      line-height: 1.2em;
+      letter-spacing: 0;
+    }
+  }
+  
+  @media screen and (min-width:800px)
+  {
+    /* text can be spaced out a little better on a larger screen */
+    p
+    {
+      font:1em 'Verdana', 'Arial', sans-serif;
+      line-height: 1.5em;
+      letter-spacing:0.05em;
+    }
+  }
+
+  </style>
+</head>
+<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
+
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" href="#myPage">Louisiana Blues Trial</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#about">ABOUT</a></li>
+        <li><a href="#services">MISSION STATEMENT</a></li>
+        <li><a href="#pricing">DONATE</a></li>
+        <li><a href="#contact">CONTACT</a></li>
+        <li><a href="#explore.html">EXPLORE</a></li>
+        <li><a href="./complete_form.html">VOLUNTEER</a></li>
+        
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="jumbotron text-center">
+  <h1>Louisiana Blues Trial</h1> 
+  <p>We care for our rich history</p> 
+ 
+ <div id="myCarousel" class="carousel slide" data-ride="carousel">
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+      <li data-target="#myCarousel" data-slide-to="1"></li>
+      <li data-target="#myCarousel" data-slide-to="2"></li>
+       
+    </ol>
+
+ <div class="carousel-inner" role="listbox">
+      <div class="item active">
+        <img src="http://s1.dmcdn.net/Ez_ZA.jpg" alt="Image">
+        <div class="carousel-caption">
+          <h3>Louisiana Blues Trial</h3>
+          <p>Come Join Us</p>
+        </div>      
+      </div>
+
+      <div class="item">
+        <img src="https://i.ytimg.com/vi/NN3GQygbCC8/mqdefault.jpg" alt="Image">
+        <div class="carousel-caption">
+          <h3>Explore</h3>
+          <p>The rich history</p>
+        </div>      
+      </div>
+
+      <div class="item">
+        <img src="https://lh3.googleusercontent.com/oqcCInu29tAcuMPFhdmZ0XVkFXgzcQAyZGr5X_R6Conj04hLuW2L22Pw7iWFEdGBVzF_=s669-fcrop64=1,2036378ddf5ac7df" alt="Image">
+        <div class="carousel-caption">
+          <h3>The history of Louisiana</h3>
+          <p>Your history</p>
+        </div>      
+      </div>
+    
+    </div>
+
+    
+
+    <!-- Left and right controls -->
+    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+      <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+      <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+</div>
+</div>
+
+
+<div class="container text-center">
+
+<!-- Container (About Section) -->
+<div id="about" class="container-fluid" >
+  <div class="row">
+    <div class="col-sm-8" style= "background: #BBDEFB">
+      <h2>Lesli Rambin</h2><br>
+     
+      <p> <img src ="https://scontent-dft4-2.xx.fbcdn.net/v/t1.0-9/12523882_10203942447321624_8844274798049586499_n.jpg?oh=dae79cc492c2c3f0778358b9208a66e4&oe=5892FAFB" alt="alt text" align = "right" style="background-color: #E0E0E0; float:right; height:122px; width: 33%; height: auto; min-width: 100px; float: right; margin:100px -400px 95px 96px; border-radius: 50%;">
+      <p class = "sagar" style = "text-align: left;"> A native of West Monroe, Louisiana, Lesli Rambin is employed as an English Instructor by the University of Louisiana at Monroe, where she earned her Master’s in Teaching in 2011 and her Bachelor’s in English in 2006. She also earned her Master’s in Creative Writing from the University of Louisiana at Lafayette in 2008. <br>
+In addition to teaching, Lesli serves as a contributing music editor for the online literary journal, The Swamp, and cohosts a weekly local public radio segment, “Byway Blues,” with her husband, Kirby. Lesli and her husband are more than spouses; they are research partners, co-workers, best friends and soul mates. When not working, they are most likely together, listening to one of their beloved records, sharing an Abita Amber and the company of their dog.
+<br>
+Her love for Louisiana can be seen not simply in her dedication to establishing a Louisiana Blues Trail, but in her preference for strawberries over any kind of meat, her passionate pursuit of magnolias in May, her tendency to seek out obscure, country roads to travel down, and her embrace of all things that evoke that sweet southern gothic beauty. Above all else, she strives to preserve and promote regional culture, believing that we should never fail to see the beauty in our humble origins.</p>
+<br>
+</p>
+      
+    </div>
+</div>
+<br>
+
+<!-- Container (Services Section) -->
+<div id="about" class="container-fluid">
+  <div class="row">
+    <div class="col-sm-8" style = "background: #FFF59D";>
+  <h2>Kirby Rambin</h2>
+  <h4></h4>
+  <br>
+  <!--<div class="row slideanim">
+    <div class="col-sm-4"> -->
+ <p> <img src ="https://scontent-dft4-2.xx.fbcdn.net/v/t1.0-9/13244785_1190667300967404_8271594829984776750_n.jpg?oh=c532c33600398d32329576a925b267da&oe=589E7332" alt="alt text" align = "right" style="float:right; height:122px; width: 33%; height: auto; min-width: 100px; float: right; margin:100px -400px 95px 96px; border-radius: 50%;">    
+<p style = "text-align: left;">Kirby Rambin, born in Monroe, teaches Orchestra at the Excellence Academy Charter Middle School. A student of the violin for over 23 years, Kirby has performed with artists such as Doug Duffey, Larry Garner, Toussaint McCall, and Kenny Bill Stinson.<br>
+Kirby and his wife, Lesli are both contributing music editors for “The Swamp” – an online literary journal. They also cohost the weekly “Byway Blues” segment on the local public radio station, KEDM, where Kirby is also employed as a Production Assistant. Together, they work to collect the music and stories of Louisiana’s rich and cultured past. This love of their home state’s culture is second only to their love of each other.
+<br>
+Louisiana flows through Kirby’s veins, as his ancestors were some of the first European settlers in the area. His work on the Louisiana Blues Trail comes naturally out of his love for the land, people, and culture of his home. He hopes to help more people see the splendor in Louisiana’s colorful and complicated past.
+</p>
+
+    </div>
+  </div>
+  </div>
+
+<br>
+<div id="services" class="container-fluid">
+<div class="container-fluid bg-grey">
+  <div class="row">
+    <div class="col-sm-4">
+      <span class="glyphicon glyphicon-globe logo slideanim"></span>
+    </div>
+    <div class="col-sm-8">
+      <h2>Mission Statement</h2><br>
+      <h4><strong>MISSION:</strong> The Louisiana Blues Trail seeks to preserve Louisiana’s unique blues history through recognizing small towns as cultural epicenters and using regional folk art to commemorate the musicians and land, thereby fostering long term cultural preservation through public education and awareness.
+      </h4>
+      
+      
+    </div>
+  </div>
+</div>
+
+
+
+<br>  
+<br>   
+<br>   
+<br>     
+
+<!-- Container (Portfolio Section) -->
+
+  
+  
+  
+  
+
+
+
+<!-- Container (Pricing Section) -->
+<div id="pricing" class="container-fluid">
+  <div class="text-center" style = "background: #FFF59D;" >
+    <h2>Donate</h2>
+    <h4>Help us be even more effective</h4>
+    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+<input type="hidden" name="cmd" value="_s-xclick">
+<input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----MIIHNwYJKoZIhvcNAQcEoIIHKDCCByQCAQExggEwMIIBLAIBADCBlDCBjjELMAkGA1UEBhMCVVMxCzAJBgNVBAgTAkNBMRYwFAYDVQQHEw1Nb3VudGFpbiBWaWV3MRQwEgYDVQQKEwtQYXlQYWwgSW5jLjETMBEGA1UECxQKbGl2ZV9jZXJ0czERMA8GA1UEAxQIbGl2ZV9hcGkxHDAaBgkqhkiG9w0BCQEWDXJlQHBheXBhbC5jb20CAQAwDQYJKoZIhvcNAQEBBQAEgYAW/kyFRurBiKmJBNoPG4Iu0EaKwsjRopY3kDKavmvGqupFL8B7ZOJr3VIoDTRPXd58ELImvAMHFmpIi/0CKZh4xBi47NBKRJob925iJCb4uISL9mFQcfpziRPqAn7jMBSOWcJkwY0sYgQHGBBOCMoGuP4dtOCMIMAVZUlPa2S9ZjELMAkGBSsOAwIaBQAwgbQGCSqGSIb3DQEHATAUBggqhkiG9w0DBwQI0Bpi6yYxaG2AgZB8AF0ATorP5tRmWEEDGlOPHbulxg4zRN/ZB0RcfdibNTsHacE0dhzZxaZHTefZomo7/srtM2PvlsWmx7A4EJirCp9BFYgQNCcZz43N3GvkDzWGB2/JKY2f9vcc6jVCJvq2WWsHfcxsqiOdr8oqDQ4ncRaqco1gmy8L4rtBiKYbGxqBb1NEmO5fT7/asBN9QxqgggOHMIIDgzCCAuygAwIBAgIBADANBgkqhkiG9w0BAQUFADCBjjELMAkGA1UEBhMCVVMxCzAJBgNVBAgTAkNBMRYwFAYDVQQHEw1Nb3VudGFpbiBWaWV3MRQwEgYDVQQKEwtQYXlQYWwgSW5jLjETMBEGA1UECxQKbGl2ZV9jZXJ0czERMA8GA1UEAxQIbGl2ZV9hcGkxHDAaBgkqhkiG9w0BCQEWDXJlQHBheXBhbC5jb20wHhcNMDQwMjEzMTAxMzE1WhcNMzUwMjEzMTAxMzE1WjCBjjELMAkGA1UEBhMCVVMxCzAJBgNVBAgTAkNBMRYwFAYDVQQHEw1Nb3VudGFpbiBWaWV3MRQwEgYDVQQKEwtQYXlQYWwgSW5jLjETMBEGA1UECxQKbGl2ZV9jZXJ0czERMA8GA1UEAxQIbGl2ZV9hcGkxHDAaBgkqhkiG9w0BCQEWDXJlQHBheXBhbC5jb20wgZ8wDQYJKoZIhvcNAQEBBQADgY0AMIGJAoGBAMFHTt38RMxLXJyO2SmS+Ndl72T7oKJ4u4uw+6awntALWh03PewmIJuzbALScsTS4sZoS1fKciBGoh11gIfHzylvkdNe/hJl66/RGqrj5rFb08sAABNTzDTiqqNpJeBsYs/c2aiGozptX2RlnBktH+SUNpAajW724Nv2Wvhif6sFAgMBAAGjge4wgeswHQYDVR0OBBYEFJaffLvGbxe9WT9S1wob7BDWZJRrMIG7BgNVHSMEgbMwgbCAFJaffLvGbxe9WT9S1wob7BDWZJRroYGUpIGRMIGOMQswCQYDVQQGEwJVUzELMAkGA1UECBMCQ0ExFjAUBgNVBAcTDU1vdW50YWluIFZpZXcxFDASBgNVBAoTC1BheVBhbCBJbmMuMRMwEQYDVQQLFApsaXZlX2NlcnRzMREwDwYDVQQDFAhsaXZlX2FwaTEcMBoGCSqGSIb3DQEJARYNcmVAcGF5cGFsLmNvbYIBADAMBgNVHRMEBTADAQH/MA0GCSqGSIb3DQEBBQUAA4GBAIFfOlaagFrl71+jq6OKidbWFSE+Q4FqROvdgIONth+8kSK//Y/4ihuE4Ymvzn5ceE3S/iBSQQMjyvb+s2TWbQYDwcp129OPIbD9epdr4tJOUNiSojw7BHwYRiPh58S1xGlFgHFXwrEBb3dgNbMUa+u4qectsMAXpVHnD9wIyfmHMYIBmjCCAZYCAQEwgZQwgY4xCzAJBgNVBAYTAlVTMQswCQYDVQQIEwJDQTEWMBQGA1UEBxMNTW91bnRhaW4gVmlldzEUMBIGA1UEChMLUGF5UGFsIEluYy4xEzARBgNVBAsUCmxpdmVfY2VydHMxETAPBgNVBAMUCGxpdmVfYXBpMRwwGgYJKoZIhvcNAQkBFg1yZUBwYXlwYWwuY29tAgEAMAkGBSsOAwIaBQCgXTAYBgkqhkiG9w0BCQMxCwYJKoZIhvcNAQcBMBwGCSqGSIb3DQEJBTEPFw0xNjA1MTgxODQ3MDhaMCMGCSqGSIb3DQEJBDEWBBTPjVJqKe+ve+BrQ0/C5iZpTGW64zANBgkqhkiG9w0BAQEFAASBgH2QBm3wR/UG1dS9aYszlmXlgatnsa9BGNCoI1XLhN8L2KHxMYyCG3f0yobtRNvR6Ed6uAAXp4vGCVjFCB7M1FtXzipuUwxGiNcuj+Xl0woio7lESVsqFmlFmOA7xTOiE1RkiCOmrKbTqMzwv+I7RqX9UfO0xWS4UoeeXFeihZC5-----END PKCS7-----
+">
+<input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+<img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+</form>
+
+  </div>
+  <br>
+  <br>
+
+
+
+<!-- Container (Contact Section) -->
+<div id="contact" class="container-fluid bg-grey">
+<form action= "MAILTO: poudels@warhawks.ulm.edu" method ="post" enctype="text/plain">
+  <h2 class="text-center">CONTACT US</h2>
+  <div class="row">
+    <div class="col-sm-5">
+      <p>Put forward your queries</p>
+      <p><span class="glyphicon glyphicon-map-marker"></span>Monroe, Louisiana </p>
+      <p><span class="glyphicon glyphicon-phone"></span> +318-000000</p>
+      <p><span class="glyphicon glyphicon-envelope"></span> rambin@ulm.edu</p>     
+    </div>
+    <div class="col-sm-7 slideanim">
+      <div class="row">
+        <div class="col-sm-6 form-group">
+          <input class="form-control" id="name" name="name" placeholder="Name" type="text" required>
+        </div>
+        <div class="col-sm-6 form-group">
+          <input class="form-control" id="email" name="email" placeholder="Email" type="email" required>
+        </div>
+      </div>
+      <textarea class="form-control" id="comments" name="comments" placeholder="Comment" rows="5"></textarea><br>
+      <div class="row">
+        <div class="col-sm-12 form-group">
+          <button class="btn btn-default pull-right <input type="submit"  type="submit">Send</button>
+        </div>
+      </div>  
+    </div>
+  </div>
+  </form>
+</div>
+
+<br>
+
+
+<div id="portfolio poudel" class="container-fluid text-center bg-grey">
+  <h2>Explore Our Findings</h2><br>
+ <a href ="explore.html">
+  <h2> Dive in </h2></div>
+ </a> 
+  <div class="row text-center slideanim">
+    <div class="col-sm-4" style = "background: #A5D6A;">
+      <div class="thumbnail">
+        
+    </div>
+  </div>
+<!-- Add Google Maps -->
+
+<iframe src="https://www.google.com/maps/d/embed?mid=z8bdAU_W88MA.kUZNjIN1uOjE" width="1000" height="550"></iframe>
+
+
+<footer class="container-fluid text-center">
+  <a href="#myPage" title="To Top">
+    <span class="glyphicon glyphicon-chevron-up"></span>
+  <p style = "color: white;">Back To Top</p>
+  </a>
+  
+</footer>
+
+
+<script>
+$(document).ready(function(){
+  // Add smooth scrolling to all links in navbar + footer link
+  $(".navbar a, footer a[href='#myPage']").on('click', function(event) {
+
+    // Prevent default anchor click behavior
+   // event.preventDefault();
+
+    // Store hash
+    var hash = this.hash;
+
+    // Using jQuery's animate() method to add smooth page scroll
+    // The optional number (900) specifies the number of milliseconds it takes to scroll to the specified area
+    $('html, body').animate({
+      scrollTop: $(hash).offset().top
+    }, 900, function(){
+   
+      // Add hash (#) to URL when done scrolling (default click behavior)
+      window.location.hash = hash;
+    });
+  });
+  
+  $(window).scroll(function() {
+    $(".slideanim").each(function(){
+      var pos = $(this).offset().top;
+
+      var winTop = $(window).scrollTop();
+        if (pos < winTop + 600) {
+          $(this).addClass("slide");
+        }
+    });
+  });
+})
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
